@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maleta Didática de Sensores</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Maleta Didática de Sensores</h1>
+    <div class="status-bar">
+      <span id="status" class="status off">Aguardando dados…</span>
+      <span id="ultima">Última atualização: —</span>
+      <button id="btnSimular" type="button">Simular dados</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="painel">
+      <article class="card">
+        <h2>Velocidade (MH-Sensor)</h2>
+        <p class="valor"><span data-campo="velocidade_rpm">--</span> <small>RPM</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Peso (HX711)</h2>
+        <p class="valor"><span data-campo="peso_g">--</span> <small>g</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Temperatura (DHT11)</h2>
+        <p class="valor"><span data-campo="temperatura">--</span> <small>°C</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Umidade (DHT11)</h2>
+        <p class="valor"><span data-campo="umidade">--</span> <small>%</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Luz (LDR)</h2>
+        <p class="valor"><span data-campo="luz">--</span> <small>/ 4095</small></p>
+        <div class="barra"><div id="barraLuz"></div></div>
+      </article>
+
+      <article class="card">
+        <h2>Distância (HC-SR04)</h2>
+        <p class="valor"><span data-campo="distancia_cm">--</span> <small>cm</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Cor (TCS3200)</h2>
+        <div id="amostraCor" class="amostra"></div>
+        <p class="rgb">R <span data-campo="cor.r">--</span> · G <span data-campo="cor.g">--</span> · B <span data-campo="cor.b">--</span></p>
+      </article>
+
+      <article class="card">
+        <h2>Batimentos (PulseSensor)</h2>
+        <p class="valor"><span data-campo="bpm">--</span> <small>BPM</small></p>
+      </article>
+
+      <article class="card">
+        <h2>Som (KY-037)</h2>
+        <p class="valor"><span data-campo="som">--</span> <small>/ 4095</small></p>
+        <div class="barra"><div id="barraSom"></div></div>
+      </article>
+    </section>
+
+    <section class="docs">
+      <h2>Documentação técnica</h2>
+      <div class="tabela-wrap">
+        <table>
+          <thead>
+            <tr><th>Sensor</th><th>Módulo</th><th>Alimentação</th><th>Saída</th><th>Faixa</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Velocidade</td><td>MH-Sensor / LM393</td><td>3,3–5 V</td><td>Digital</td><td>Pulsos por segundo</td></tr>
+            <tr><td>Peso</td><td>Célula 50 kg + HX711</td><td>2,6–5,5 V</td><td>Serial 24 bits</td><td>0–50 kg</td></tr>
+            <tr><td>Temp. / Umidade</td><td>DHT11</td><td>3–5,5 V</td><td>Digital 1 fio</td><td>0–50 °C · 20–90 %</td></tr>
+            <tr><td>Luz</td><td>LDR GL5528</td><td>3,3 V (divisor)</td><td>Analógica</td><td>0–4095 (12 bits)</td></tr>
+            <tr><td>Distância</td><td>HC-SR04</td><td>5 V</td><td>Pulso Echo (5 V)</td><td>2–400 cm</td></tr>
+            <tr><td>Cor</td><td>TCS3200</td><td>2,7–5,5 V</td><td>Frequência</td><td>RGB 0–255</td></tr>
+            <tr><td>Pulso</td><td>HW-827</td><td>3–5 V</td><td>Analógica</td><td>BPM</td></tr>
+            <tr><td>Som</td><td>KY-037 / LM393</td><td>3,3–5 V</td><td>Analógica + digital</td><td>0–4095 (12 bits)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Formato do JSON em <code>/maleta</code></h3>
+      <pre>{
+  "velocidade_rpm": 0,
+  "peso_g": 0,
+  "temperatura": 0,
+  "umidade": 0,
+  "luz": 0,
+  "distancia_cm": 0,
+  "cor": { "r": 0, "g": 0, "b": 0 },
+  "bpm": 0,
+  "som": 0
+}</pre>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
